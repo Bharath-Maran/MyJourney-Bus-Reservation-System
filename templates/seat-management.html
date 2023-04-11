@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/style.css')}}">
+{%extends 'base.html'%}
+{%block title%}Seat Management | Aspire Bus{%endblock%}
+{%block content%}
+<form action="" method="post" class="SeatForm">
+    <input type="text" name="travel_id" placeholder="Travel ID" required>
+    <button class="btn btn-success" type="submit" name="action" value="FetchSeats">Fetch Seats</button>
+</form>
+<p></p>
+<div class="table-container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Travel ID</th>
+      <th scope="col">Seat ID</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Seat Number</th>
+      <th scope="col">Seat Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for seat in seatdetails %}
+    <tr>
+      <td>{{ seat[0] }}</td>
+      <td>{{ seat[1] }}</td>
+      <td>{{ seat[2] }}</td>
+      <td>{{ seat[3] }}</td>
+      {% if seat[4] == 'Available' %}
+        <td><span class="text-success">{{ seat[4] }}</span></td>
+      {% elif seat[4] == 'Temporary' %}
+        <td><span class="text-orange">{{ seat[4] }}</span></td>
+      {%else%}
+        <td><span class="text-danger">{{ seat[4] }}</span></td>
+      {% endif %}
+      <td>
+        <form action="#" method="post">
+            <input type="hidden" name="seat_number" value="{{seat[3]}}">
+            {% if seat[4] == 'Available' %}
+            <button class="btn btn-warning" type="submit" name="action" value="Temporary">Temporary</button>
+            {% elif seat[4] == 'Temporary' %}
+            <button class="btn btn-success" type="submit" name="action" value="Available">Available</button>
+            {%else%}
+            <button class="btn btn-success" type="submit" name="action" value="Available">Available</button>
+            <button class="btn btn-warning" type="submit" name="action" value="Temporary">Temporary</button>
+            {%endif%}
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{%endblock%}

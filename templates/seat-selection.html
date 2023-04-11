@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/seat-selection.css')}}">
+{% extends 'base.html' %}
+{% block title %}Seat Selection | Aspire Bus{% endblock %}
+{% block content %}
+<table>
+  <tr>
+    <td></td>
+    {% set row_count = 0 %}
+    {% for seat in seatdetails %}
+      {% if loop.index % 10 == 1 %}
+        {% set row_count = row_count + 1 %}
+        </tr><tr>
+      {% endif %}
+      {% if seat[1] == 'Available' %}
+        <td class="seat seat-available" id= "{{seat[0]}}" data-id="{{ seat[0] }}">{{ seat[0] }}</td>
+      {% elif seat[1] == 'Booked' %}
+        <td class="seat seat-booked">{{ seat[0] }}</td>
+      {% else %}
+        <td class="seat seat-temporary">{{ seat[0] }}</td>
+      {% endif %}
+    {% endfor %}
+    <td></td>
+  </tr>
+</table>
+<form action="/passenger-details" method="post">
+  <input type="hidden" name="selectedseats" id="selectedseats" value="">
+  <button id="next-button" class="btn btn-success" onclick=SubmitSelectedSeats() name="action" value="SeatSelection" disabled>Book Now</button>
+</form>
+<script src="{{url_for('static',filename='/scripts/seat-selection.js')}}"></script>
+{% endblock %}
