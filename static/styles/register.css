@@ -1,0 +1,126 @@
+h2, h4 {
+  display: block; /* set the display property to block to put each tag on its own line */
+  margin: auto; /* center the elements horizontally within the container */
+  text-align: center; /* center the text within the elements */
+}
+
+.SignUpContainer-1{
+  /* background-color: #506ef7; */
+  overflow: hidden;
+  float: left;
+  width: 40%;
+  height: 70%;
+  margin-left: 10%;
+}
+
+.SignUpContainer-2{
+  /* background-color: #04AA6D; */
+  overflow: hidden;
+  float: right;
+  width: 40%;
+  height: 60%;
+  margin-top: 5%;
+  margin-right: 10%;
+}
+
+.SignUpContainer-1 > h2 {
+  /* align-items: center; */
+  color: #003380;
+  
+}
+
+.SignUpContainer-1 > h4 {
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 17.5px;
+  /* align-items: center; */
+  color: rgba(0,0,0,.4);
+}
+
+.SignUpContainer-2 > h2 {
+  /* align-items: center; */
+  color: #003380;
+  
+}
+
+.SignUpContainer-2 > h4 {
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 17.5px;
+  /* align-items: center; */
+  color: rgba(0,0,0,.4);
+}
+
+.RegisterInput-ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.RegisterInput-ul li{
+    display: inline-block;
+    margin-right: 10px;
+
+}
+
+.RegisterInput li:last-child{
+    margin-right: 0;
+}
+
+.RegisterField-1{
+    margin-left: 15%;
+    width: 70%;
+    /* background-color: #003380; */
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.RegisterField-2{
+    margin-left: 15%;
+    width: 70%;
+    /* background-color: #003380; */
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.i.fa-solid.fa-signature {
+  /* font-size: 1em; */
+  margin-right: 1em;
+}
+
+.i.fa-solid.fa-calendar-days {
+  /* font-size: 1em; */
+  margin-right: 1em;
+}
+
+.i.fa-solid.fa-envelope {
+  /* font-size: 1em; */
+  margin-right: 1em;
+}
+
+.i.fa-solid.fa-phone {
+  /* font-size: 1em; */
+  margin-right: 1em;
+}
+
+.i.fa-solid.fa-user {
+  /* font-size: 1em; */
+  margin-right: 1em;
+}
+
+.i.fa-solid.fa-lock {
+  /* font-size: 1em; */
+  margin-right: 1em;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+}
+
+td {
+  padding: 0px 10px; /* or margin: 10px; */
+}

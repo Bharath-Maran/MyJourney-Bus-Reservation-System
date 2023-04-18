@@ -1,0 +1,136 @@
+.table-class {
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.seat {
+  border: 1px solid black;
+  padding: 30px;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 15px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.seat-booked {
+  background-color: #ff0000;
+  cursor: not-allowed;
+}
+
+.seat-available{
+  background-color: #c7c7c7;
+}
+
+.seat-temporary{
+  background-color: #ffa84b;
+  cursor: not-allowed;
+}
+
+.seat-selected{
+  background-color: #6fff55;
+}
+
+.seat:hover {
+background-color: #a3a3a3;
+}
+
+.seat-temporary:hover{
+  background-color: #ffa84b;
+  cursor: not-allowed;
+}
+
+.seat-booked:hover {
+  background-color: #ff0000;
+  cursor: not-allowed;
+}
+
+.seat.selected {
+background-color: #003380;
+color: white;
+}
+
+.seat-container {
+  margin: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  font-size: 15px;
+  border: 1px solid black;
+}
+
+.gradient-btn-booknow:hover {
+  background-position: right center; /* change the direction of the change here */
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.gradient-btn-booknow {
+  background-image: linear-gradient(to right, #56ab2f 0%, #a8e063  51%, #56ab2f  100%);
+}
+
+.HeadContainer{
+  /* background-color: #ffa84b; */
+  width: 100%;
+  height: max-content;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.SourceLocation{
+  width: max-content;
+  font-size: 20px;
+  font-weight: bold;
+  /* background-color: #6fff55; */
+  text-transform: uppercase;
+  margin-right: 20px;
+}
+
+.fa-arrow-right-long{
+  width: max-content;
+  font-size: 20px;
+  font-weight: bold;
+  /* background-color:aqua; */
+  text-transform: uppercase;
+  margin-right: 20px;
+}
+
+.DestinationLocation{
+  width: max-content;
+  font-size: 20px;
+  font-weight: bold;
+  /* background-color: #a3a3a3; */
+  text-transform: uppercase;
+  margin-right: 20px;
+}
+
+.SourceDate{
+  width: max-content;
+  font-size: 20px;
+  font-weight: bold;
+  /* background-color: #003380; */
+  text-transform: uppercase;
+  margin-right: 20px;
+}
+
+.OperatorName{
+  width: max-content;
+  font-size: 20px;
+  font-weight: bold;
+  /* background-color: #ff0000; */
+  text-transform: uppercase;
+  margin-right: 20px;
+}
