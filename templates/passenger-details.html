@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/style.css')}}">
+{%extends 'base.html'%}
+{%block title%}
+Passenger Details | Aspire Bus
+{%endblock%}
+{%block content%}
+<h1>Passenger Details</h1>
+
+<form id="passenger-form" action="#" method="post">
+    {%for i in range(passenger_count)%}
+    <div class="PassengerForm">
+    <h4>Passenger Form {{i+1}}</h4>
+    <input type="text" name="first_name" placeholder="First Name" id="first_name_{{i}}" value="" required><p></p>
+    <input type="text" name="last_name" placeholder="Last Name" id="last_name_{{i}}" value="" required><p></p>
+    <input type="number" name="age" placeholder="Age" id="age_{{i}}" min="1" max="150" value="" required><p></p>
+    <input type="text" name="gender" placeholder="Gender" id="gender_{{i}}" value="" required><p></p>
+    </div>
+    {%endfor%}
+    <input type="hidden" name="passengerdetails" id="passengerdetails" value="">
+    <button id="pay-now-button" class="btn btn-success" onclick="SubmitForm()" name="action" value="AddPassengerDetails">Pay Now</button>
+</form>
+<script src="{{url_for('static',filename='/scripts/passenger-form.js')}}"></script>
+{%endblock%}
+
