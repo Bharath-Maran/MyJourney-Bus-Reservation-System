@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/style.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/seat-management.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/transaction-history.css')}}">
 {%extends 'base.html'%}
-{%block title%}Seat Management | Aspire Bus{%endblock%}
+{%block title%}Seat Management | MyJourney{%endblock%}
 {%block content%}
-<form action="" method="post" class="SeatForm">
-    <input type="text" name="travel_id" placeholder="Travel ID" required>
-    <button class="btn btn-success" type="submit" name="action" value="FetchSeats">Fetch Seats</button>
+<form action="" method="post">
+  <div class="SeatContainer">
+    <input type="number" name="travel_id" class="SeatManagementForm-Field" placeholder="Travel ID" min="1" title="Use Only Numerical Values" required>
+    <button class="gradient-btn-tm gradient-btn-fetchseat" type="submit" name="action" value="FetchSeats" >FETCH SEATS</button>
+  </div>
 </form>
 <p></p>
 <div class="TransactionHistory">
@@ -22,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for seat in seatdetails %}
+    {% for seat in seat_details %}
     <tr>
       <td>{{ seat[0] }}</td>
       <td>{{ seat[1] }}</td>
@@ -36,7 +38,7 @@
         <td><span class="text-danger">{{ seat[4] }}</span></td>
       {% endif %}
       <td>
-        <form action="#" method="post">
+        <form action="" method="post">
             <input type="hidden" name="seat_number" value="{{seat[3]}}">
             {% if seat[4] == 'Available' %}
             <button class="btn btn-warning" type="submit" name="action" value="Temporary">Temporary</button>

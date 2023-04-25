@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/booking-history.css')}}">
 {%extends 'base.html'%}
-{%block title%}Booking History | Aspire Bus{%endblock%}
+{%block title%}Booking History | MyJourney{%endblock%}
 {%block content%}
 <div class="BookingHistory">
     <table class="table">
@@ -15,28 +15,34 @@
         </tr>
       </thead>
       <tbody>
-        {% for details in booking_details %}
+        {% for details in booking_history %}
         <tr>
           <td>{{ details[0] }}</td>
           <td>{{ details[1] }}</td>
           <td>{{ details[2] }}</td>
-          {% if details[3] == 'Completed' %}
-          <td><span class="text-success">{{ details[3] }}</span></td>
+          {% if details[3] == 'Processed' %}
+          <td><span class="text-success" style="font-weight:700; text-transform: uppercase;">{{ details[3] }}</span></td>
           {% elif details[3] == 'Refunded' %}
-          <td><span class="text-orange">{{ details[3] }}</span></td>
+          <td><span class="text-orange" style="font-weight:700; text-transform: uppercase;">{{ details[3] }}</span></td>
+          {% elif details[3] == 'Pending' %}
+          <td><span class="text-black" style="font-weight:700; text-transform: uppercase;">{{ details[3] }}</span></td>
           {% endif %}
           {% if details[4] == 'Confirmed' %}
-          <td><span class="text-success">{{ details[4] }}</span></td>
+          <td><span class="text-success" style="font-weight:700; text-transform: uppercase;">{{ details[4] }}</span></td>
           {% elif details[4] == 'Cancelled' %}
-          <td><span class="text-danger">{{ details[4] }}</span></td>
+          <td><span class="text-danger" style="font-weight:700; text-transform: uppercase;">{{ details[4] }}</span></td>
+          {% elif details[4] == 'Pending' %}
+          <td><span class="text-black" style="font-weight:700; text-transform: uppercase;">{{ details[4] }}</span></td>
           {% endif %}
           <td>
-            <form action="#" method="post">
+            <form action="" method="post">
                 <input type="hidden" name="booking_id" value="{{details[0]}}">
-                {%if details[3] == 'Completed' and details[4] == 'Confirmed'%}
+                {%if details[3] == 'Processed' and details[4] == 'Confirmed'%}
                 <button class="btn btn-success" type="submit" name="action" value="ViewTicket">View Ticket</button>
                 <button class="btn btn-danger" type="submit" name="action" value="CancelTicket">Cancel Ticket</button>
                 {%elif details[3] == 'Refunded' and details[4] == 'Cancelled'%}
+                <button class="btn btn-success" type="submit" name="action" value="ViewTicket">View Ticket</button>
+                {%elif details[3] == 'Pending' and details[3] == 'Pending'%}
                 <button class="btn btn-success" type="submit" name="action" value="ViewTicket">View Ticket</button>
                 {%else%}
                 <button class="btn btn-success" type="submit" name="action" value="ViewTicket" disabled>View Ticket</button>

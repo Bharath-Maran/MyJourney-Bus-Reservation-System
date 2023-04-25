@@ -7,9 +7,9 @@
 <div class="MainContainer">
 
     {%if value == True%}
-    <form action="/payments" method="post">
+    <form action="/payments/wallet" method="post">
     <input type="hidden" name="action" id="container_id_input" value="FetchBalance">
-    {%for details in carddetails%}
+    {%for details in card_details%}
     <div class="DisplayCardContainer" id="{{details[0]}}" onclick="setContainerId(this)">
         <img src="{{url_for('static',filename='/images/myjourney.png')}}" alt="MyJourneyLogo" width="150px" height="40px" style="margin-left: 200px; margin-top: 10px;">
         {%if details[4] == 'RuPay'%}
@@ -34,7 +34,7 @@
 
     {%else%}
     <div class="DisplayCardContainer">
-        <img src="{{url_for('static',filename='/images/myjourney.png')}}" alt="MyJourneyLogo" width="150px" height="50px" style="margin-left: 190px;">
+        <img src="{{url_for('static',filename='/images/myjourney.png')}}" alt="MyJourneyLogo" width="150px" height="40px" style="margin-left: 200px; margin-top: 10px;">
         <div class="CardNumber">
             <p>1234 5678 9012 3456</p>
         </div>
@@ -47,7 +47,7 @@
     </div>
     {%endif%}
 
-    <form action="/payments" method="post">
+    <form action="/payments/wallet" method="post">
     <div class="AddCardContainer">
         <h4>Add Card Details!</h4>
         <h6>Make your payment easier.</h6>
@@ -55,7 +55,7 @@
             <tbody>
                 <tr>
                     <!-- <td><i class="fa-solid fa-signature fa-lg"></i></td> -->   
-                    <select  class="AddCardForm-field AddCardForm-Select" name="card_type" id="card_type">
+                    <select  class="AddCardForm-field AddCardForm-Select" name="card_type" id="card_type" title="Select Card Type." required>
                         <option class="AddCardForm-Option" value="" disabled selected>Select Card Type</option>
                         <option class="AddCardForm-Option" value="RuPay">RuPay</option>
                         <option class="AddCardForm-Option" value="Mastercard">Mastercard</option>
@@ -63,26 +63,29 @@
                     </select>
                 </tr>
                 <tr>
-                    <td><input type="text" class="AddCardForm-field" name="card_number" id="card_number" placeholder="Card Number" autocomplete="off" required></td>
+                    <td><input type="text" class="AddCardForm-field" name="card_number" id="card_number" placeholder="Card Number" autocomplete="off"  title="Enter 16 Numerical Values." required></td>
                 </tr>
                 <tr>
-                    <td><input type="text" class="AddCardForm-field" name="cardholder_name" placeholder="Cardholder Name" autocomplete="off" required></td>
+                    <td><input type="text" class="AddCardForm-field" name="cardholder_name" placeholder="Cardholder Name" autocomplete="off" pattern="[a-zA-Z\s]+" title="Use only alphabets" required></td>
                 </tr>
                 <tr>
                     <td><input type="month" class="AddCardForm-field" name="card_expiry" placeholder="Expiry Date" autocomplete="off" required></td>
                 </tr>
                 <tr>
-                    <td><input type="password" class="AddCardForm-field" name="card_cvv" placeholder="CVV" autocomplete="off" required></td>
+                    <td><input type="password" class="AddCardForm-field" name="card_cvv" placeholder="CVV" autocomplete="off" pattern="[0-9]{3}" title="Enter 3 Numerical Values." required></td>
                 </tr>
                 <tr>
-                    <td><button class="gradient-btn gradient-btn-aspire-login" name="action" value="AddCard" type="submit">Add Card</button></td>
+                    <td><button class="gradient-btn gradient-btn-aspire-login" name="action" value="AddCard" type="submit" style="font-weight: bold;">ADD CARD</button></td>
+                </tr>
+                <tr>
+                    <td><button class="gradient-btn gradient-btn-danger" name="action" value="RemoveCard" type="submit" style="font-weight: bold;">REMOVE CARD</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
     </form>
 
-    <form action="/payments" method="post">
+    <form action="/payments/wallet" method="post">
     <div class="TransactionContainer">
         <div class="ChosenCardNumber">
             <h4>Card Number</h4>
@@ -100,13 +103,10 @@
             <table style="border-spacing: 10in;">
                 <tbody>
                     <tr>
-                        <td><input type="number" class="AddCardForm-field" name="amount" placeholder="Amount" autocomplete="off" required></td>
+                        <td><input type="number" class="AddCardForm-field" name="amount" placeholder="Amount" autocomplete="off" min="0" title="Use Only Numerical Values" required></td>
                     </tr>
                     <tr>
-                        <td><button class="gradient-btn gradient-btn-aspire-payment" name="action" value="AddWallet" type="submit">Add to Wallet</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="gradient-btn gradient-btn-aspire-payment" name="action" value="AddCard" type="submit" disabled>Add to Card</button></td>
+                        <td><button class="gradient-btn gradient-btn-aspire-payment" name="action" value="AddWallet" type="submit" style="font-weight: bold;">ADD TO WALLET</button></td>
                     </tr>
                 </tbody>
             </table>

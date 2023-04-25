@@ -1,25 +1,57 @@
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/style.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/passenger-details.css')}}">
 {%extends 'base.html'%}
 {%block title%}
-Passenger Details | Aspire Bus
+DUMMY DESIGN
 {%endblock%}
 {%block content%}
-<h1>Passenger Details</h1>
-
-<form id="passenger-form" action="#" method="post">
-    {%for i in range(passenger_count)%}
-    <div class="PassengerForm">
-    <h4>Passenger Form {{i+1}}</h4>
-    <input type="text" name="first_name" placeholder="First Name" id="first_name_{{i}}" value="" required><p></p>
-    <input type="text" name="last_name" placeholder="Last Name" id="last_name_{{i}}" value="" required><p></p>
-    <input type="number" name="age" placeholder="Age" id="age_{{i}}" min="1" max="150" value="" required><p></p>
-    <input type="text" name="gender" placeholder="Gender" id="gender_{{i}}" value="" required><p></p>
+<div class="MainContainer">
+  <form id="passenger-form" action="/seat-selection/passenger-details" method="post">
+  {%for i in range(passenger_count)%}
+  <div class="PassengerForm">
+    <p>Passenger {{i+1}}</p>
+    <input type="text" name="first_name_{{i}}" class="PassengerForm-Field" placeholder="First Name" pattern="[a-zA-Z\s]+" title="Use only alphabets" required></input>
+    <input type="text" name="last_name_{{i}}" class="PassengerForm-Field" placeholder="Last Name" pattern="[a-zA-Z\s]+" title="Use only alphabets" required></input>
+    <input type="number" name="age_{{i}}" id="age_{{i}}" min="1" max="150" class="PassengerForm-Field" placeholder="Age" title="Use Only Numerical Values"></input>
+    <select name="gender_{{i}}" d="gender_{{i}}" class="PassengerForm-Field" required>
+      <option value="" disabled selected>Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  {%endfor%}
+    <div class="TravelDetails">
+        <div class="OperatorDetails">
+        <p>Rathimeena Travels</p>
+        </div>
+        <div class="SourceDetails">
+        <p>Pondicherry</p>
+        <p>11/15/2001</p>
+        <p>15:00:00</p>
+        </div>
+        <div class="Arrow">
+        <i class="fa-solid fa-arrow-right"></i>
+        </div>
+        <div class="DestinationDetails">
+        <p>Pondicherry</p>
+        <p>11/15/2001</p>
+        <p>15:00:00</p>
+        </div>
+        <div class="SeatDetails">
+        <p>SELECTED SEAT NUMBERS</p>
+        </div>
+        <div class="SeatNumbers">
+        {%for seats in selected_seats%}
+        | {{seats}} | 
+        {%endfor%}
+        </div>
+        <div class="PaymentButton">
+        <button id="pay-now-button" class="gradient-btn gradient-btn-success" name="action" value="AddPassengerDetails" style="font-weight: bold;">PAY NOW</button>
+        </div>
     </div>
-    {%endfor%}
-    <input type="hidden" name="passengerdetails" id="passengerdetails" value="">
-    <button id="pay-now-button" class="btn btn-success" onclick="SubmitForm()" name="action" value="AddPassengerDetails">Pay Now</button>
-</form>
+  </form>
+</div>
 <script src="{{url_for('static',filename='/scripts/passenger-form.js')}}"></script>
 {%endblock%}
 

@@ -3,12 +3,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/94a8e5c5a1.js" crossorigin="anonymous"></script>
 {%extends 'base.html'%}
-{%block title%}Search Bus | Aspire Bus{%endblock%}
+{%block title%}Search Bus | MyJourney{%endblock%}
 {%block content%}
 <div class="SearchBarContainer">
   <form action="" method="post">
-    <input type="text" class="SearchForm-Field" name="source_location" placeholder="From" required>
-    <input type="text" class="SearchForm-Field" name="destination_location" placeholder="To" required>
+    <input type="text" class="SearchForm-Field" name="source_location" placeholder="From" pattern="[a-zA-Z]+" title="Use only alphabets" required>
+    <input type="text" class="SearchForm-Field" name="destination_location" placeholder="To" pattern="[a-zA-Z]+" title="Use only alphabets" required>
     <input type="date" class="SearchForm-Field" name="source_date" placeholder="MM/DD/YYYY" id="my-date-input" min="YYY-MM-DD" required>
     <button class="btn btn-aspire" type="submit" name="action" value="SearchBus">SEARCH BUS</button>
   </form>
@@ -21,7 +21,7 @@
 <form action="" method="post">
 <div class="SortContainer">
   <ul style="list-style-type: none;" class="Sorting-ul">
-    <li class="BusesFound">
+    <li class="BusesFound" id="BusFound">
       {{count}} BUSES FOUND
     </li>
     {%if option=='EarlyDeparture'%}
@@ -94,17 +94,26 @@
 
 <form id="myForm" action="/search-bus" method="post">
 <div class="FilterContainer" id="filters">
-  <!-- <div class="FilterLabel">
-    <input type="hidden" name="selected_options" value="">
-    <button id="next-button" class="btn btn-success" onclick=SubmitFilter() name="action" value="Filters" disabled>Apply Filters</button>
-  </div> -->
+  <p></p>
+  <div class="FilterLabel">
+    <input type="hidden" name="selected_options" id="selected_options" value="">
+    <button id="next-button" class="btn btn-aspire" name="action" value="Filters" disabled>APPLY FILTERS</button>
+  </div>
+  <p></p>
   <div class="FilterLabel">DEPARTURE TIME</div>
   <div class="FilterInput">
     <ul style="list-style-type: none;">
+      {%if 'dep_before_6am' in filter_options%}
+      <li>
+        <input class="CheckboxInput" type="checkbox" title="Before 6 AM" value="dep_before_6am" name="checkbox_name" checked></input>
+        <label class="CheckboxLabel" for="before_6am"><i class="fa-solid fa-cloud-sun"></i> Before 6 AM</label>
+      </li>
+      {%else%}
       <li>
         <input class="CheckboxInput" type="checkbox" title="Before 6 AM" value="dep_before_6am" name="checkbox_name"></input>
         <label class="CheckboxLabel" for="before_6am"><i class="fa-solid fa-cloud-sun"></i> Before 6 AM</label>
       </li>
+      {%endif%}
       <li>
         <input class="CheckboxInput" type="checkbox" title="6 AM to 12 PM" value="dep_6am_to_12pm" name="checkbox_name"></input>
         <label class="CheckboxLabel" for="6am_to_12pm"><i class="fa-solid fa-sun"></i> 6 AM to 12 PM</label>
@@ -215,21 +224,22 @@
   </div>
 </div>
 </form>
+
 {%if value == False:%}
 
 <div class="NoneContainer">
-  <h4><i class="fa-solid fa-ticket fa-lg"></i> Sorry, buses are not available for the preferred destination and date of travel!</h4>
-  <h6>Continue searching above.</h6>
+  <h4 style="text-transform: uppercase; font-size: 20px; font-weight: bold;">Sorry, buses are not available for the preferred destination and date of travel!</h4>
+  <h6 style="text-transform: uppercase; font-weight: bold;">Continue searching above.</h6>
 </div>
 
 {%elif value ==  True:%}
 
-{% for travel in traveldetails %}
-<div class="BusContainer">
-  <div class="Operator">  
+{% for travel in travel_details %}
+<div class="BusContainer" id="BusContainer">
+  <div class="Operator" id="Operator">  
     <p>{{travel[0]}}</p>
   </div>
-  <div class="BusType">
+  <div class="BusType" id="BusType">
     <p>{{travel[11]}}</p>
   </div>
   <div class="Amenities">
@@ -282,32 +292,32 @@
     </ul>
   </div>
   <div class="SourceColumn">
-    <div class="SourceTime">
+    <div class="SourceTime" id="SourceTime">
       <p>{{travel[5]}}</p>
     </div>
-    <div class="SourceLocation">
+    <div class="SourceLocation" id="SourceLocation">
       <p>{{travel[1]}}</p>
     </div>
-    <div class="SourceDate">
+    <div class="SourceDate" id="SourceDate">
       <p>{{travel[3]}}</p>
     </div>
   </div>
   <div class="DestinationColumn">
-    <div class="DestinationTime">
+    <div class="DestinationTime" id="DestinationTime">
       <p>{{travel[6]}}</p>
     </div>
-    <div class="DestinationLocation">
+    <div class="DestinationLocation" id="DestinationLocation">
       <p>{{travel[2]}}</p>
     </div>
-    <div class="DestinationDate">
+    <div class="DestinationDate" id="DestinationDate">
       <p>{{travel[4]}}</p>
     </div>
   </div>
   <div class="FareColumn">
-    <div class="Fare">
+    <div class="Fare" id="Fare">
       <p>INR {{travel[7]}}</p>
     </div>
-    <div class="Available">
+    <div class="Available" id="Available">
       <p>{{travel[8]}} Seats Available</p>
     </div>
   </div>
@@ -318,10 +328,7 @@
       <input type="hidden" name="travel_id" value="{{travel[9]}}">
       <button class="gradient-btn-searchbus gradient-btn-searchbus-select" type="submit" name="action" value="SelectSeat" disabled>SELECT SEATS</button>
     </div>
-    </form>
-    <div class="CompareButton">
-      <button class="gradient-btn-searchbus gradient-btn-searchbus-compare" disabled>ADD TO COMPARE</button>
-    </div>
+    </form> 
     {%else%}
     <form action="" method="post">
     <div class="SeatButton">

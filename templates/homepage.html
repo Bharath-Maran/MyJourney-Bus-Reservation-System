@@ -1,19 +1,20 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/style.css')}}">
 <!DOCTYPE html>
 {%extends 'base.html'%}
-{%block title%}Home | Aspire Bus{%endblock%}
+{%block title%}Home | MyJourney{%endblock%}
 {%block content%}
+
 <div class="home-container">
     <div class="HomeForm">
-        <h1>Welcome to Aspire Bus!</h1>
+        <h1>Welcome to MyJourney!</h1>
         <h3>Traveling made easy - with just a click, have a happy journey.</h3>
     </div>
 </div>
 <div class="homesearch-container">
   <form action="/search-bus" method="post">
-    <input type="text" class="HomeForm-field" name="source_location" placeholder="From" required>
-    <input type="text" class="HomeForm-field" name="destination_location" placeholder="To" required>
-    <input type="date" class="HomeForm-Field" name="source_date" placeholder="MM/DD/YYYY" id="my-date-input" min="YYY-MM-DD" required>
+    <input type="text" class="HomeForm-field" name="source_location" placeholder="From" pattern="[a-zA-Z]+" title="Use only alphabets" required>
+    <input type="text" class="HomeForm-field" name="destination_location" placeholder="To" pattern="[a-zA-Z]+" title="Use only alphabets" required>
+    <input type="date" class="HomeForm-Field" name="source_date" placeholder="MM/DD/YYYY" id="my-date-input" min="YYYY-MM-DD" required>
     <button class="btn btn-aspire" type="submit" name="action" value="SearchBus">Search Bus</button>
   </form>
 </div>

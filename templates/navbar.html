@@ -17,7 +17,7 @@
           Admin Dashboard
         </button>
         <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-          <li><a class="dropdown-item" href="/users-list">User Management</a></li>    
+          <li><a class="dropdown-item" href="/user-management">User Management</a></li>    
           <li><a class="dropdown-item" href="/bus-management">Bus Management</a></li>
           <li><a class="dropdown-item" href="/travel-management">Travel Management</a></li>
           <li><a class="dropdown-item" href="/seat-management">Seat Management</a></li>
@@ -33,14 +33,13 @@
         <ul class="dropdown-menu" aria-labelledby="loginDropdown">
           <li><a class="dropdown-item" href="/search-bus">Search Bus</a></li>
           <li><a class="dropdown-item" href="/booking-history">My Bookings</a></li>
-          <li><a class="dropdown-item" href="/transaction-history">Transactions</a></li>
-          <li><a class="dropdown-item" href="/payments">Wallet</a></li> 
+          <li><a class="dropdown-item" href="/payments/transaction-history">Transactions</a></li>
+          <li><a class="dropdown-item" href="/payments/wallet">Wallet</a></li> 
         </ul>
       </div>
       <a href="/profile"><button class="btn btn-outline-customer-navbar me-2" type="button">Profile</button></a>
       <a href="/logout"><button class="btn btn-outline-danger-navbar me-2" type="button">Logout</button></a>
       {% endif %}
-      <a href="/about-us"><button class="btn btn-outline-customer-navbar me-2" type="button">About Us</button></a>
     </div>
   </div>
 </nav>
