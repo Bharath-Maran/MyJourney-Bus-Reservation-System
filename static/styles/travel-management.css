@@ -46,11 +46,11 @@
 }
   
 .AddTravelForm-Field:focus {
-border-color: #5a72a6;
+border-color: #003380;
 }
 
 .gradient-btn-addtravel {
-    background-image: linear-gradient(to right, #b05bb0 0%, #506ef7 51%, #800080 100%);
+    background-image: linear-gradient(to right, #004d80 0%, #506ef7 51%, #003380 100%);
     width: 70%;
     height: 30%;
     font-weight: bold;

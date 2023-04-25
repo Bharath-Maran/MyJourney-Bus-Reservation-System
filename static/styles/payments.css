@@ -204,7 +204,7 @@ border-color: #5a72a6;
 }
 
 .gradient-btn-aspire-payment {
-    background-image: linear-gradient(to right, #b05bb0 0%, #506ef7 51%, #800080 100%);
+    background-image: linear-gradient(to right, #56ab2f 0%, #a8e063  51%, #56ab2f  100%);
     width: 100%;
     margin-bottom: 10px;
   }
@@ -212,6 +212,17 @@ border-color: #5a72a6;
 .gradient-btn-aspire-payment:disabled{
   /* background-image: linear-gradient(to right, #b4b4b4 0%, #ffffff 51%, #6e6e6e 100%); */
   background-image: linear-gradient(to right, #b05bb085 0%, #506ff778 51%, #8000807d 100%);
+}
+
+.gradient-btn-danger-payment {
+    background-image: linear-gradient(to right, #e70b0be4 0%, #e70b0ba6 51%, #e70b0b 100%);
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+.gradient-btn-aspire-danger:disabled{
+  /* background-image: linear-gradient(to right, #b4b4b4 0%, #ffffff 51%, #6e6e6e 100%); */
+  background-image: linear-gradient(to right, #e70b0b2d 0%, #e70b0b2d 51%, #e70b0b31 100%);
 }
 
 .AddCardContainer > h4 {

@@ -19,7 +19,7 @@
 }
 
 .BusContainer:hover{
-    background-image: linear-gradient(to right, #b05bb029 0%, #506ff721 51%, #8000801d 100%);
+    background-image: linear-gradient(to right, #b05bb029 0%, #506ff721 51%, #00338027 100%);
     background-position: right center; /* change the direction of the change here */
     box-shadow: 0 20px 30px 0 rgba(0,0,0,0.24), 0 25px 60px 0 rgba(0,0,0,0.19);
 }
@@ -201,7 +201,7 @@
     align-items: center;
     display: flex;
     font-size: medium;
-    color: #8027c5;;
+    color: #003380;;
   }
 
 .BusesFound {
@@ -210,7 +210,7 @@
     display: flex;
     font-size: larger;
     font-weight: bolder;
-    color: #8027c5;
+    color: #003380;
   }
 
 .gradient-btn-searchbus-resetsort {
@@ -255,7 +255,7 @@
 
 .SearchBarContainer{
   width: max-content;
-  background-color:#5a72a6;   
+  background-color:#003380;   
   display: relative;
   justify-content: center;
   align-items: center;
@@ -283,12 +283,12 @@
   margin-top: 15px;
   width: 100%;
   outline: 0;
-  border: 2px solid #5a72a6;
+  border: 2px solid #003380;
   
 }
 
 .SearchForm-Field:focus {
-  border-color: #5a72a6;
+  border-color: #003380;
 }
 
 .FilterContainer{
@@ -315,7 +315,7 @@
     background-color: transparent;
     height: 10px;
     letter-spacing: 1px;
-    color: #8027c5;
+    color: #003380;
 }
 
 .FilterInput{
@@ -471,17 +471,17 @@
 } */
 
 .gradient-btn-compare {
-  background-image: linear-gradient(to right, #b05bb0 0%, #506ef7 51%, #800080 100%);
-  width: 100% !important;
-  height: 40px !important;
-  font-size: 14px !important;
-  border-radius: 0% !important;
-  font-weight: bold;
+    background-image: linear-gradient(to right, #004d80 0%, #506ef7 51%, #003380 100%);
+    width: 100% !important;
+    height: 40px !important;
+    font-size: 14px !important;
+    border-radius: 0% !important;
+    font-weight: bold;
 }
 
 .gradient-btn-compare:disabled{
   /* background-image: linear-gradient(to right, #b4b4b4 0%, #ffffff 51%, #6e6e6e 100%); */
-  background-image: linear-gradient(to right, #b05bb085 0%, #506ff778 51%, #8000807d 100%);
+  background-image: linear-gradient(to right, #004d80a7 0%, #506ff7a5 51%, #003380a9 100%);
 }
 
 .SortContainer{
@@ -509,7 +509,7 @@
     float: left;
     padding: 10px 10px;
     letter-spacing: 1px;
-    color: #8027c5;
+    color: #003380;
     font-size: large;
     font-weight: bolder;
 }

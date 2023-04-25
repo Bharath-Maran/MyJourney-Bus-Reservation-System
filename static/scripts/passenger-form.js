@@ -9,7 +9,7 @@ for (var i=0; i<passenger_forms.length; i++){
     first_name: passenger_form.querySelector('input[name="first_name"]').value,
     last_name: passenger_form.querySelector('input[name="last_name"]').value,
     age: passenger_form.querySelector('input[name="age"]').value,
-    gender: passenger_form.querySelector('input[name="gender"]').value,
+    gender: passenger_form.querySelector('select[name="gender"]').value,
   };
   passenger_details.push(passenger);
 }

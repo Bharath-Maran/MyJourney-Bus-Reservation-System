@@ -9,21 +9,45 @@ html {
   flex-direction: column;
 }
 
+/* body {
+	background: linear-gradient(-45deg, #66cad9, #986bd6, #65b9d8, #67d7bd);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+} */
+
+/* @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+} */
+  
+
 .btn-aspire{
-  background-color: #5a72a6;
+  background-color: #003380;
   color: white;
-  transition: background-color 0.5s ease;
+  transition: 0.5s ease;
   width: 100%;
   border-radius: 0;
   height: 35px;
   justify-content: center;
   align-items: center;
   display: flex;
+  padding: 10px 24px;
+  background-size: 200% auto;
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 }
 
 .btn-aspire:hover{
   background-color: #003380;
   color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .btn-aspire-warning{
@@ -151,19 +175,6 @@ html {
     
 }
 
-.PassengerForm{
-  width: 100%;
-  padding: 20px;
-  background-color: #cfcfcf;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: auto;
-  margin-bottom: 10px;
-  border: 1px solid black;
-}
 
 .table-container {
     margin: 10px;
@@ -625,6 +636,18 @@ select option:hover {
   color: white;
 }
 
+.btn-aspire{
+  background-color: #003380;
+  color: white;
+  transition: background-color 0.5s ease;
+  width: 100%;
+  border-radius: 0;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
 .gradient-btn {
   text-decoration: none;
   flex: 1 1 auto;
@@ -647,22 +670,22 @@ select option:hover {
 }
 
 .gradient-btn-aspire {
-  background-image: linear-gradient(to right, #b05bb0 0%, #506ef7 51%, #800080 100%);
+  background-image: linear-gradient(to right, #004d80 0%, #506ef7 51%, #003380 100%);
 }
 
 .gradient-btn-aspire-login {
-  background-image: linear-gradient(to right, #b05bb0 0%, #506ef7 51%, #800080 100%);
+  background-image: linear-gradient(to right, #004d80 0%, #506ef7 51%, #003380 100%);
   width: 100%;
   margin-top: 15px;
 }
 
 .gradient-btn-aspire-login:disabled{
   /* background-image: linear-gradient(to right, #b4b4b4 0%, #ffffff 51%, #6e6e6e 100%); */
-  background-image: linear-gradient(to right, #b05bb085 0%, #506ff778 51%, #8000807d 100%);
+  background-image: linear-gradient(to right, #004d80a7 0%, #506ff7a5 51%, #003380a9 100%);
 }
 
 .gradient-btn-search-bus {
-  background-image: linear-gradient(to right, #b05bb0 0%, #506ef7 51%, #800080 100%);
+  background-image: linear-gradient(to right, #004d80 0%, #506ef7 51%, #003380 100%);
   width: 100%;
   border-radius: 0;
   height: 35px ;
@@ -759,7 +782,7 @@ i.fa-indian-rupee-sign{
 }
 
 .LoginForm-field:focus {
-  border-color: #5a72a6;
+  border-color: #003380;
 }
 
 .LoginForm {
@@ -842,12 +865,12 @@ i.fa-indian-rupee-sign{
   margin-top: 15px;
   width: 100%;
   outline: 0;
-  border: 2px solid #5a72a6;
+  border: 2px solid #003380;
   
 }
 
 .HomeForm-field:focus {
-  border-color: #5a72a6;
+  border-color: #003380;
 }
 
 
@@ -867,7 +890,7 @@ i.fa-indian-rupee-sign{
 
 .homesearch-container{
   width: max-content;
-  background-color:#5a72a6;   
+  background-color:#003380;   
   display: relative;
   justify-content: center;
   align-items: center;
@@ -897,7 +920,7 @@ i.fa-indian-rupee-sign{
 }
 
 .RegisterForm-field:focus {
-  border-color: #5a72a6;
+  border-color: #003380;
 }
 
 .RegisterForm {

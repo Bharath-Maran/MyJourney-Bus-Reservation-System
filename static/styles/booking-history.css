@@ -13,6 +13,10 @@
     width: 80%;
 }
 
+.BookingHistory table{
+    vertical-align: middle;
+}
+
 /* .BookingHistory tbody tr:hover{
     background-image: linear-gradient(to right, #b05bb029 0%, #506ff721 51%, #8000801d 100%);
     background-position: right center; 

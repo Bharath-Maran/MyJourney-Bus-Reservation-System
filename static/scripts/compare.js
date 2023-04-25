@@ -1,15 +1,5 @@
 var SelectedCompareOptions = []
 
-// function UpdateFooterDisplay(){
-//   const footer = document.getElementById('footer-container');
-//   if(SelectedCompareOptions.length>=1){
-//     footer.style.display = 'block';
-//   }
-//   else{
-//     footer.style.display = 'none';
-//   }
-// }
-
 function UpdateButton(){
   const CompareNowButton = document.getElementById('compare-now');
   if (SelectedCompareOptions.length>=2){
@@ -57,7 +47,6 @@ function AddCompare(button){
     console.log(SelectedCompareOptions);
   }
 
-  // UpdateFooterDisplay();
   UpdateButton();
   DisableButtons();
 
@@ -65,7 +54,6 @@ function AddCompare(button){
   CompareOptionsInput.value = JSON.stringify(SelectedCompareOptions);
 }
 
-// UpdateFooterDisplay();
 UpdateButton();
 DisableButtons();
 

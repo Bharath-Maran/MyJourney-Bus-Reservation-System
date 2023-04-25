@@ -11,6 +11,10 @@
     overflow: hidden;
 }
 
+.TransactionHistory table{
+    vertical-align: middle;
+}
+
 /* .TransactionHistory tbody tr:hover{
     background-image: linear-gradient(to right, #b05bb029 0%, #506ff721 51%, #8000801d 100%);
     background-position: right center; 
