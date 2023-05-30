@@ -19,11 +19,11 @@
                 <tbody>
                     <tr>
                         <td><i class="fa-solid fa-signature fa-lg"></i></td>
-                        <td><input type="text" class="RegisterForm-field" name="first_name" placeholder="First Name" autocomplete="off" pattern="[a-zA-Z]+" title="Use only alphabets" required></td>
+                        <td><input type="text" class="RegisterForm-field" name="first_name" placeholder="First Name" autocomplete="off" pattern="[a-zA-Z]+" maxlength="20" title="Use only alphabets" required></td>
                     </tr>
                     <tr>
                         <td><i class="fa-solid fa-signature fa-lg"></i></td>
-                        <td><input type="text" class="RegisterForm-field" name="last_name" placeholder="Last Name" autocomplete="off" pattern="[a-zA-Z]+" title="Use only alphabets" required></td>
+                        <td><input type="text" class="RegisterForm-field" name="last_name" placeholder="Last Name" autocomplete="off" pattern="[a-zA-Z]+" maxlength="20" title="Use only alphabets" required></td>
                     </tr>
                     <tr>
                         <td><i class="fa-solid fa-calendar-days fa-lg"></i></td>
@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td><i class="fa-solid fa-phone fa-lg"></i></td>
-                        <td><input type="number" class="RegisterForm-field" name="phone_number" placeholder="Phone Number" autocomplete="off" pattern="[1-9]{1}[0-9]{9}" maxlength="10" min="0000000001" max="9999999999" title="10 Numerical Values Mandatory" required></td>
+                        <td><input type="number" class="RegisterForm-field" name="phone_number" placeholder="Phone Number" autocomplete="off" pattern="[1-9]{1}[0-9]{9}" minlength="10" maxlength="10" min="0000000001" max="9999999999" title="10 Numerical Values Mandatory" required></td>
                     </tr>
                 </tbody>
             </table>
@@ -59,11 +59,11 @@
                 <tbody>
                     <tr>
                         <td><i class="fa-solid fa-user fa-lg"></i></td>
-                        <td><input type="text" class="RegisterForm-field" name="username" placeholder="Create Username" autocomplete="off" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{4,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 4 Characters Mandatory" required></input></td>
+                        <td><input type="text" class="RegisterForm-field" name="username" placeholder="Create Username" autocomplete="off" minlength="4" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{4,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 4 Characters Mandatory" required></input></td>
                     </tr>
                     <tr>
                         <td><i class="fa-solid fa-lock fa-lg"></i></td>
-                        <td><input type="password" class="RegisterForm-field" name="password" placeholder="Create Password" autocomplete="off" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{8,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 8 Characters Mandatory" required></input></td>
+                        <td><input type="password" class="RegisterForm-field" name="password" placeholder="Create Password" autocomplete="off" minlength="8" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{8,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 8 Characters Mandatory" required></input></td>
                     </tr>
                     <tr>
                         <td></td>
