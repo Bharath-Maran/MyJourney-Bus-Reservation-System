@@ -2,28 +2,34 @@
 from flask import Flask, redirect, url_for, render_template, request, session, jsonify
 from flask_mysqldb import MySQL
 import json
-from datetime import date, datetime, timedelta
+import configparser
 
 #Creates a instance of the Flask and assigns it to 'app'.
 app = Flask(__name__)
 
+#Parsing the configuration file
+config = configparser.ConfigParser()
+config.read('config.cfg')
+host = config.get('mysql', 'host')
+user = config.get('mysql', 'user')
+password = config.get('mysql', 'password')
+db = config.get('mysql', 'db')
+secret_key = config.get('app', 'secret_key')
+
+
 #Database configuration.   
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Aspire@123'
-app.config['MYSQL_DB'] = 'bus_db'
+app.config['MYSQL_HOST'] = host
+app.config['MYSQL_USER'] = user
+app.config['MYSQL_PASSWORD'] = password
+app.config['MYSQL_DB'] = db
 
 #Secret key to store the session data in server-side.
-app.secret_key = 'comrade'
+app.secret_key = secret_key
 
 #Creates the instance of the MySQL and assigns it to 'mysql'.
 mysql = MySQL(app)
 
 #--------------|CLASS DECLARATION|--------------#
-
-def serialize(obj):
-    if isinstance(obj, (date, datetime, timedelta)):
-        return obj.__str__()
 
 #Attributes and methods of the user.
 class User:
@@ -89,7 +95,7 @@ class User:
         mycursor = mysql.connection.cursor()
         try:
             #Fetches all the data from 'user_credentials' where the username and password is the value passed by the user.
-            query = 'SELECT USER_ID, USER_POWER, USER_STATUS FROM USER_CREDENTIALS WHERE USERNAME=%s AND PASSWORD=%s'
+            query = 'SELECT USER_ID, USER_POWER, USER_STATUS, FIRST_NAME FROM USER_CREDENTIALS WHERE USERNAME=%s AND PASSWORD=%s'
             values = (self.username, self.password)
             mycursor.execute(query, values)
             result = mycursor.fetchall()
@@ -100,9 +106,11 @@ class User:
                 user_id = result[0][0]
                 user_power = result[0][1]
                 user_status = result[0][2]
+                first_name = result[0][3]
                 self.user_id = user_id
                 self.user_power = user_power
                 self.user_status = user_status
+                self.first_name = first_name
 
                 #Checks the status of the user, 'Active' or 'Disabled'
                 if user_status == 'Active':
@@ -111,6 +119,7 @@ class User:
                     session['user_id'] = user_id
                     session['user_power'] = user_power
                     session['user_status'] = user_status
+                    session['first_name'] = first_name
                     print("ValidateUser | User login successful.")
                     statement = 'User login successful.'
                     return True, statement
@@ -129,6 +138,7 @@ class User:
                     session['user_id'] = user_id
                     session['user_power'] = user_power
                     session['user_status'] = updated_status
+                    session['first_name'] = first_name
                     self.user_status = updated_status
                     print("ValidateUser | User login successful (Deactivated -> Activated).")
                     #Upon successful verifcation, 'True' is returned.
@@ -1609,13 +1619,22 @@ class Passenger:
 #Default url of the web application.
 @app.route('/')
 def Initial():
+    session['redirect_searchbus'] = False
     #Redirects the default url to the html page we need to display.
     return redirect(url_for('HomePage'))
 
 #Renders the homepage of the web application.
 @app.route('/home')
 def HomePage():
-    return render_template('homepage.html') 
+    if 'redirect_searchbus' not in session:
+        session['redirect_searchbus'] = False
+        return render_template('homepage.html')
+    else:
+        if session['redirect_searchbus']:
+            return redirect(url_for('SearchBus'))
+        else:
+            session['redirect_searchbus'] = False
+            return render_template('homepage.html')
 
 #User registration.
 @app.route('/register', methods = ['GET', 'POST'])
@@ -1657,30 +1676,43 @@ def Registration():
 def LoggingIn():
     #Enters into the below if code if the request method in submitted form is 'POST'.
     if request.method == 'POST':
+        action = request.form['action']
+        if action == 'Login':
+            #Gets the details submitted by the user in the form in HTML page.
+            username = request.form['username']
+            password = request.form['password']
 
-        #Gets the details submitted by the user in the form in HTML page.
-        username = request.form['username']
-        password = request.form['password']
+            #Creates an instance using all the details passed by the user.
+            user = User("","","","","","","","","",username, password)
 
-        #Creates an instance using all the details passed by the user.
-        user = User("","","","","","","","","",username, password)
+            #Triggers the 'Login' method of the class 'User' using the instance 'user'.
+            result, statement = user.Login()
 
-        #Triggers the 'Login' method of the class 'User' using the instance 'user'.
-        result, statement = user.Login()
-
-        #Checks if the result of the method is True or False.
-        if result:
-            print("LoggingIn | Login successful.")
-            #Redirects the user to the 'HomePage' page.
-            # return redirect(url_for('HomePage'))
-            return render_template('homepage.html', login_statement = statement)
+            #Checks if the result of the method is True or False.
+            if result:
+                print("LoggingIn | Login successful.")
+                #Redirects the user to the 'HomePage' page.
+                # return redirect(url_for('HomePage'))
+                print(session['redirect_searchbus'])
+                if session['redirect_searchbus']:
+                    return(redirect(url_for('SearchBus')))
+                else:
+                    return render_template('homepage.html', login_statement = statement)
+            else:
+                #Redirects the user back to the 'Login' page
+                return redirect(url_for('LoggingIn'))
+        if action == 'Register':
+            return redirect(url_for('Registration'))
+        
         else:
-            #Redirects the user back to the 'Login' page
+            print('LoggingIn | Invalid action command.')
             return redirect(url_for('LoggingIn'))
     else:
+        if 'redirect_searchbus' not in session:
+            session['redirect_searchbus'] = False
         #If the request method is not 'POST' the 'Login' page is loaded.
         return render_template('login.html')
-    
+          
 #User logout.
 @app.route('/logout', methods = ['GET', 'POST'])
 def Logout():
@@ -1762,6 +1794,11 @@ def SearchBus():
 
         #The action is the name of the button that holds some value assigned to it. (There are multiple buttons with different values.)
         action = request.form['action']
+
+        #Redirects the user to login if not logged in.
+        if action == 'RedirectLogin':
+            session['redirect_searchbus'] = True
+            return redirect(url_for('LoggingIn'))
 
         #Executes if the action value is 'SearchBus'.
         if action == 'SearchBus':
@@ -1879,8 +1916,32 @@ def SearchBus():
             return render_template('search-bus.html')
         
     else:
-        #If the request method is not 'POST' the 'Search Bus' page is loaded.
-        return render_template('search-bus.html')
+        if session['redirect_searchbus']:
+            user_id = session.get('user_id')
+            source_location =  session['source_location']
+            destination_location = session['destination_location']
+            source_date =  session['source_date']
+
+            #Creates an empty instance of the class.
+            bus = Bus('','','','','','','','','','','','','','','','')
+
+            #Triggers the 'SearchBus' method of the class.
+            result = bus.SearchBus('SearchBus')
+
+            #Checks if the result of the method is 'True' or 'False'.
+            if result:
+                #Counts the len of the result i.e length of the tuple.
+                count = len(result)
+                #Travel_details holds the bus result.
+                #count holds the number of buses found.
+                #value is True, as the buses are available for displaying.
+                #User ID is passed to enable / disable 'Compare' and 'Select Seats' feature.
+                return render_template('search-bus.html', travel_details = result, count = count, value = True, user_id = user_id)
+            else:
+                #Value is False, as the buses are not available.
+                return render_template('search-bus.html', value = False)
+        else:
+            return render_template('search-bus.html')
     
 @app.route('/filter', methods = ['GET', 'POST'])
 def filter():
@@ -2104,7 +2165,7 @@ def BookingPayment():
                         if result:
                             #Redirects the user to the 'HomePage'.
                             print('BookingPayment | Ticket booked.')
-                            return redirect(url_for('HomePage'))
+                            return redirect(url_for('BookingHistory'))
                         else:
                             #Failure to update seat count, redirects the user to the 'TransactionHistory'.
                             print('BookingPayment | Failed to book ticket.')

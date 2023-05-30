@@ -2,6 +2,11 @@ html {
   margin: 20px;
 }
 
+.justify-content-end{
+  justify-content: end !important;
+  align-items: end !important;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -53,7 +58,7 @@ html {
 .btn-aspire-warning{
   background-color: #d7b714;
   color: black;
-  transition: background-color 0.5s ease;
+  transition: bac kground-color 0.5s ease;
   width: 100%;
   border-radius: 50px;
   height: 35px;
@@ -679,6 +684,11 @@ select option:hover {
   margin-top: 15px;
 }
 
+.gradient-btn-aspire-register {
+  background-image: linear-gradient(to right, #004d80 0%, #506ef7 51%, #003380 100%);
+  width: 270px;
+}
+
 .gradient-btn-aspire-login:disabled{
   /* background-image: linear-gradient(to right, #b4b4b4 0%, #ffffff 51%, #6e6e6e 100%); */
   background-image: linear-gradient(to right, #004d80a7 0%, #506ff7a5 51%, #003380a9 100%);
@@ -841,7 +851,6 @@ i.fa-indian-rupee-sign{
   margin: auto;
   
 }
-
 
 .HomeForm > h1 {
   align-items: center;

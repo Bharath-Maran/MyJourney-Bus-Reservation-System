@@ -11,13 +11,16 @@
     <form action="" method="post" name="LoginForm">
         <label>
         <i class="fa-solid fa-user fa-lg"></i>
-        <input type="text" class="LoginForm-field" id="username" name="username" placeholder="Username" autocomplete="off" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{4,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 4 Characters Mandatory" required><p></p>
+        <input type="text" class="LoginForm-field" id="username" name="username" placeholder="Username" autocomplete="off" minlength="4" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{4,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 4 Characters Mandatory" required><p></p>
         </label>
         <label>
         <i class="fa-solid fa-lock fa-lg"></i>
-        <input type="password" class="LoginForm-field" id="password" name="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{8,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 8 Characters Mandatory" required><p></p>
+        <input type="password" class="LoginForm-field" id="password" name="password" placeholder="Password" minlength="8" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{8,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 8 Characters Mandatory" required><p></p>
         </label>
-        <button class="gradient-btn gradient-btn-aspire-login" type="submit" name="Submit">Log In</button>
+        <button class="gradient-btn gradient-btn-aspire-login" type="submit" name="action" value = "Login">Log In</button>
+    </form>
+    <form action="" method="post">
+        <button class="gradient-btn gradient-btn-aspire-register" type="submit" name="action" value="Register">New User</button>
     </form>
     </div>
 </div>

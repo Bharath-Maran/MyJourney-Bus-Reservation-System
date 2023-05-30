@@ -5,11 +5,11 @@
     <a class="navbar-brand" href="/home">
       <img src="{{url_for('static',filename='/images/myjourney.png')}}" alt="Logo" width="200px" height="50px">
     </a>
+  </div>
     <div class="d-flex justify-content-end">
       <a href="/home"><button class="btn btn-outline-customer-navbar me-2" type="button">Home</button></a>
       {% if not session['user_power'] %}
       <a href="/login"><button class="btn btn-outline-customer-navbar me-2" type="button">Login</button></a>
-      <a href="/register"><button class="btn btn-outline-customer-navbar me-2" type="button">Sign Up</button></a>
       {% else %}
       {% if session['user_power'] == 'Admin' %}
       <div class="dropdown">
@@ -26,9 +26,10 @@
         </ul>
       </div>
       {% endif %}
+
       <div class="dropdown">
         <button class="btn btn-outline-customer-navbar me-2 dropdown-toggle" type="button" id="loginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          User Dashboard
+        {{session['first_name']}}'s Dashboard
         </button>
         <ul class="dropdown-menu" aria-labelledby="loginDropdown">
           <li><a class="dropdown-item" href="/search-bus">Search Bus</a></li>
@@ -41,5 +42,4 @@
       <a href="/logout"><button class="btn btn-outline-danger-navbar me-2" type="button">Logout</button></a>
       {% endif %}
     </div>
-  </div>
 </nav>
