@@ -1,0 +1,28 @@
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/style.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{%block title%}Login | MyJourney{%endblock%}
+{%block content%}
+<div class="login-container">
+    <div class="LoginForm">
+        <h1>Welcome Back!</h2>
+        <h3>Log in to your account and plan your journey.</h3>
+    <form action="" method="post" name="LoginForm">
+        <label>
+        <i class="fa-solid fa-user fa-lg"></i>
+        <input type="text" class="LoginForm-field" id="username" name="username" placeholder="Username" autocomplete="off" minlength="4" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{4,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 4 Characters Mandatory" required><p></p>
+        </label>
+        <label>
+        <i class="fa-solid fa-lock fa-lg"></i>
+        <input type="password" class="LoginForm-field" id="password" name="password" placeholder="Password" minlength="8" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\\|,.>/?])(?!.*\s).{8,}$" title="1 Capital Letter | 1 Numerical Value | 1 Special Character | 8 Characters Mandatory" required><p></p>
+        </label>
+        <button class="gradient-btn gradient-btn-aspire-login" type="submit" name="action" value = "Login">Log In</button>
+    </form>
+    <form action="" method="post">
+        <button class="gradient-btn gradient-btn-aspire-register" type="submit" name="action" value="Register">New User</button>
+    </form>
+    </div>
+</div>
+<script src="{{url_for('static',filename='/scripts/login.js')}}"></script>
+{%endblock%}

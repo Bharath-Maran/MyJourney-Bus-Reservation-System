@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/bus-management.css')}}">
+{%extends 'base.html'%}
+{%block title%}Bus Management | MyJourney{%endblock%}
+{%block content%}
+<form action="/bus-management" method="post">
+<div class="AddBusContainer">
+
+    <div class="AddBusColumn">
+        <input type="text" name="bus_number" class="AddBusForm-Field" placeholder="Bus Number" pattern="[A-Za-z]{2}\d{2}[A-Za-z]{2}\d{4}" title="Format: PY00AA0000"  required>
+        <input type="text" name="operator_name" class="AddBusForm-Field" placeholder="Operator Name" pattern="[a-zA-Z\s]+" title="Use only alphabets" title="Use Only Alphabets" required>
+        <input type="number" name="operator_number" class="AddBusForm-Field" placeholder="Operator Number" pattern="[1-9]{1}[0-9]{9}" maxlength="10" min="0000000001" max="9999999999" title="10 Numerical Values Mandatory" required>
+        <input type="number" name="total_seats" class="AddBusForm-Field" placeholder="Total Seats" min="0" max="100" title="Use Only Numerical Values" required>
+    </div>
+
+    <div class="AddBusColumn">
+        <input type="number" name="base_fare" class="AddBusForm-Field" placeholder="Base Fare" min="0" title="Use Only Numerical Values" required>
+        <select  name="bus_type" id="bus_type" class="AddBusForm-Field" required>
+            <option value="" disabled selected>Select Bus Type</option>
+            <option value="Non-AC Seater">Non-AC Seater</option>
+            <option value="Non-AC Sleeper">Non-AC Sleeper</option>
+            <option value="AC Seater">AC Seater</option>
+            <option value="AC Sleeper">AC Sleeper</option>
+        </select>
+        <select name="reclining_seats" id="reclining_seats" class="AddBusForm-Field" required>
+            <option value="" disabled selected>Reclining Seats</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <select name="charging_points" id="charging_points" class="AddBusForm-Field" required>
+            <option value="" disabled selected>Charging Points</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div class="AddBusColumn">
+        <select name="wifi" id="wifi" class="AddBusForm-Field" required>
+            <option value="" disabled selected>WiFi</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <select name="blankets_pillows" id="blankets_pillows" class="AddBusForm-Field" required>
+            <option value="" disabled selected>Blankets & Pillows</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <select name="snacks" id="snacks" class="AddBusForm-Field" required>
+            <option value="" disabled selected>Snacks</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <select name="movie" id="movie" class="AddBusForm-Field" required>
+            <option value="" disabled selected>Movie</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div class="AddBusColumn">
+        <select name="reading_light" id="reading_light" class="AddBusForm-Field" required>
+            <option value="" disabled selected>Reading Lights</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <select name="track_my_bus" id="track_my_bus" class="AddBusForm-Field" required>
+            <option value="" disabled selected>Track My Bus</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <select name="m_ticket" id="m_ticket" class="AddBusForm-Field" required>
+            <option value="" disabled selected>M-Ticket</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <button class="gradient-btn gradient-btn-addbus-login" type="submit" name="action" value="AddBus">ADD BUS</button>
+    </div>
+</div>
+</form>
+
+{% for bus in bus_details %}
+<div class="BusManagement-Table">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Bus ID</th> 
+      <th scope="col">Bus Number</th> 
+      <th scope="col">Operator Name</th>
+      <th scope="col">Operator Number</th> 
+      <th scope="col">Total Seats</th>
+      <th scope="col">Base Fare</th>
+      <th scope="col">Bus Type</th>
+      <th scope="col">Reclining Seats</th>
+      <th scope="col">Charging Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ bus[0] }}</td>
+      <td>{{ bus[1] }}</td>
+      <td>{{ bus[2] }}</td>
+      <td>{{ bus[3] }}</td>
+      <td>{{ bus[4] }}</td>
+      <td>{{ bus[5] }}</td>
+      <td>{{ bus[6] }}</td>
+      <td>{{ bus[7] }}</td>
+      <td>{{ bus[8] }}</td>
+    </tr>
+  </tbody>
+  <thead>
+    <tr>
+      <th scope="col">Wifi</th>
+      <th scope="col">Blankets & Pillows</th>
+      <th scope="col">Snacks</th>
+      <th scope="col">Movie</th>
+      <th scope="col">Reading Light</th>
+      <th scope="col">Track My Bus</th>
+      <th scope="col">M-Ticket</th>
+      <th scope="col">Action</th>
+    </tr>
+    <tbody>
+      <tr>
+      <td>{{ bus[9] }}</td>
+      <td>{{ bus[10] }}</td>
+      <td>{{ bus[11] }}</td>
+      <td>{{ bus[12] }}</td>
+      <td>{{ bus[13] }}</td>
+      <td>{{ bus[14] }}</td>
+      <td>{{ bus[15] }}</td>
+      <td>
+        <form action="/bus-management" method="post">
+            <input type="hidden" name="bus_id" value="{{bus[0]}}">
+            <button class="gradient-btn gradient-btn-removebus" type="submit" name="action" value="RemoveBus">REMOVE BUS</button>
+        </form>
+      </td>
+      </tr>
+    </tbody>
+  </thead>
+</table>
+</div>
+{%endfor%}
+{%endblock%}

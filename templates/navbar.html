@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/styles/style.css')}}">
+<nav class="navbar bg-body-tertiary">
+  <div class="d-flex justify-content-between">
+    <a class="navbar-brand" href="/home">
+      <img src="{{url_for('static',filename='/images/myjourney.png')}}" alt="Logo" width="200px" height="50px">
+    </a>
+  </div>
+    <div class="d-flex justify-content-end">
+      <a href="/home"><button class="btn btn-outline-customer-navbar me-2" type="button">Home</button></a>
+      {% if not session['user_power'] %}
+      <a href="/login"><button class="btn btn-outline-customer-navbar me-2" type="button">Login</button></a>
+      {% else %}
+      {% if session['user_power'] == 'Admin' %}
+      <div class="dropdown">
+        <button class="btn btn-outline-customer-navbar me-2 dropdown-toggle" type="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          Admin Dashboard
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+          <li><a class="dropdown-item" href="/user-management">User Management</a></li>    
+          <li><a class="dropdown-item" href="/bus-management">Bus Management</a></li>
+          <li><a class="dropdown-item" href="/travel-management">Travel Management</a></li>
+          <li><a class="dropdown-item" href="/seat-management">Seat Management</a></li>
+          <li><a class="dropdown-item" href="/booking-management">Booking Management</a></li>
+          <li><a class="dropdown-item" href="/session-data">Session Data</a></li>
+        </ul>
+      </div>
+      {% endif %}
+
+      <div class="dropdown">
+        <button class="btn btn-outline-customer-navbar me-2 dropdown-toggle" type="button" id="loginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        {{session['first_name']}}'s Dashboard
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+          <li><a class="dropdown-item" href="/search-bus">Search Bus</a></li>
+          <li><a class="dropdown-item" href="/booking-history">My Bookings</a></li>
+          <li><a class="dropdown-item" href="/payments/transaction-history">Transactions</a></li>
+          <li><a class="dropdown-item" href="/payments/wallet">Wallet</a></li> 
+        </ul>
+      </div>
+      <a href="/profile"><button class="btn btn-outline-customer-navbar me-2" type="button">Profile</button></a>
+      <a href="/logout"><button class="btn btn-outline-danger-navbar me-2" type="button">Logout</button></a>
+      {% endif %}
+    </div>
+</nav>

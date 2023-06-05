@@ -1,0 +1,23 @@
+.TransactionHistory{
+    /* background-color: aqua; */
+    height: max-content;
+    border: 1px solid rgb(190, 190, 190);
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: 1.0s;
+    background-size: 200% auto;
+    overflow: hidden;
+}
+
+.TransactionHistory table{
+    vertical-align: middle;
+}
+
+/* .TransactionHistory tbody tr:hover{
+    background-image: linear-gradient(to right, #b05bb029 0%, #506ff721 51%, #8000801d 100%);
+    background-position: right center; 
+    box-shadow: 0 20px 30px 0 rgba(0,0,0,0.24), 0 25px 60px 0 rgba(0,0,0,0.19);
+    transition: 1.0s;
+} */

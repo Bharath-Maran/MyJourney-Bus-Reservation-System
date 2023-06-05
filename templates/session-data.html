@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block title%}Session Data | MyJourney{%endblock%}
+{%block content%}
+<div class="session-container">
+    <h1>Session Data</h1>
+    <div class="session-info">
+    <table>
+       {% for key, value in session_data %}
+        <tr>
+        <td><div class="session-label">{{key}}</div></td>
+        <td><div class="session-value">{{value}}</div></td>
+        </tr>
+      {% endfor %}
+    </table>
+    </div>
+  </div>
+{%endblock%}

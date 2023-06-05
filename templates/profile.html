@@ -1,0 +1,36 @@
+
+
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{%block title%}Profile | MyJourney{%endblock%}
+{% block content %}
+{%for data in details%}
+<div class="profile-container">
+  <h1>User Profile</h1>
+  <div class="profile-info">
+    <div class="profile-label">First Name:</div>
+    <div class="profile-value">{{data[0]}}</div>
+  </div>
+  <div class="profile-info">
+    <div class="profile-label">Last Name:</div>
+    <div class="profile-value">{{data[1]}}</div>
+  </div>
+  <div class="profile-info">
+    <div class="profile-label">Date of Birth:</div>
+    <div class="profile-value">{{data[2]}}</div>
+  </div>
+  <div class="profile-info">
+    <div class="profile-label">E-Mail ID:</div>
+    <div class="profile-value">{{data[3]}}</div>
+  </div>
+  <div class="profile-info">
+    <div class="profile-label">Phone Number:</div>
+    <div class="profile-value">{{data[4]}}</div>
+  </div>
+  <form action="" method="post">
+    <input type="hidden" name="user_id" value="{{session['user_id']}}">
+    <button class="btn btn-danger" type="submit" name="action" value="DisableAccount">Disable Account</button>
+  </form>
+</div>
+{%endfor%}
+{%endblock%}
